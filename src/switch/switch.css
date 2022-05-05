@@ -1,0 +1,32 @@
+.switch-wrapper{
+    height: 30px;
+    width: 75px;
+    border: 1px solid black;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    padding: 2px;
+    transition: all 0.5s;
+    position: relative;
+    
+}
+.switch-wrapper .toggler{
+    
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid black;
+    transition: all 0.5s;
+}
+
+.switch-wrapper .toggler.active{ 
+    
+
+    transform: translateX(135%);
+    background-color: greenyellow;
+    
+    transition: all 0.5s;
+
+    
+}

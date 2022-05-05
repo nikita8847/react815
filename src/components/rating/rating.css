@@ -1,0 +1,13 @@
+.m-star:hover{
+    transform: scale(1.2);
+    transition: all 0.5s;
+}
+.m-star{
+    transition: all 0.5s;
+}
+.rating-wrapper{
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+    
+}

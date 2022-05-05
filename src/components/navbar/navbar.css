@@ -1,0 +1,14 @@
+.m-navbar-wrapper{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: crimson;
+    color: white
+}
+.m-navbar-wrapper a{
+    color: inherit
+}
+.m-navbar-wrapper a.active{
+    border: 5px solid black
+}
