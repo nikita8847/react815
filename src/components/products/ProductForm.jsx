@@ -1,16 +1,21 @@
-import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
-import { httpFile } from "../../config/axiosConfig";
+import { httpFile, http } from "../../config/axiosConfig";
 
 function ProductForm() {
   const [formData, setFormData] = useState(null);
+  const [categories, setCategories] = useState(null);
 
   const handleSubmit = e => {
     e.preventDefault();
     let data = new FormData(e.target);
     httpFile.post("products", data);
   };
+  console.log(categories);
+
+  useEffect(() => {
+    http("categories").then(res => setCategories(res.data.result));
+  }, []);
 
   return (
     <div>
@@ -30,6 +35,14 @@ function ProductForm() {
             type="text"
             placeholder="Description"
           />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Categories</Form.Label>
+          <Form.Select name="category">
+            {categories?.map(category => (
+              <option value={category._id}>{category.name}</option>
+            ))}
+          </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Upload</Form.Label>
