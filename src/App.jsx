@@ -22,8 +22,12 @@ function App() {
         <Route path="/rating" element={<Rating />} />
         <Route path="/counter" element={<Counter />} />
         <Route path="/switch" element={<Switch />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/new" element={<ProductForm />} />
+        <Route path="/products">
+          <Route index element={<Products />} />
+          <Route path="new" element={<ProductForm />} />
+          <Route path="new/:id" element={<ProductForm />} />
+        </Route>
+
         <Route path="/students">
           <Route index element={<Students />} />
           <Route path="tasks" element={<Tasks />} />
