@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Table, Button, Pagination } from "react-bootstrap";
 import { http } from "../../config/axiosConfig";
 import queryString from "query-string";
 import swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "../../App";
 
 function Products() {
+  const { cart, setCart } = useContext(CartContext);
   const [products, setProducts] = useState(null);
   const [refresh, setRefresh] = useState(false);
   const navigator = useNavigate();
@@ -21,6 +23,14 @@ function Products() {
   const linksArray = products && [
     ...Array(Math.ceil(totalRecords / query.limit)).keys(),
   ];
+
+  console.log(cart);
+
+  const handleCart = product => {
+    const newCartItems = { ...cart };
+    newCartItems.items = [...cart.items, product];
+    setCart(newCartItems);
+  };
 
   useEffect(() => {
     http(`products?${queryString.stringify(query)}`)
@@ -88,6 +98,9 @@ function Products() {
                 </Button>
                 <Button variant="danger" onClick={() => handleDelete(pro._id)}>
                   Delete
+                </Button>
+                <Button variant="secondary" onClick={() => handleCart(pro)}>
+                  Add To Cart
                 </Button>
               </td>
             </tr>
