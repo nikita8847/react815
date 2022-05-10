@@ -69,13 +69,14 @@ function ProductForm() {
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Categories</Form.Label>
           <Form.Select name="category">
-            {categories?.map(category => (
-              <option
-                selected={category._id == formData?.category._id}
-                value={category._id}>
-                {category.name}
-              </option>
-            ))}
+            {categories &&
+              categories?.map(category => (
+                <option
+                  selected={category?._id == formData?.category?._id}
+                  value={category?._id}>
+                  {category?.name}
+                </option>
+              ))}
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
