@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Table, Button, Pagination } from "react-bootstrap";
+import { Table, Button, Pagination, Row, Col } from "react-bootstrap";
 import { http } from "../../config/axiosConfig";
 import queryString from "query-string";
 import swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../App";
+import Cart from "../cart/Cart";
 
 function Products() {
   const { cart, setCart } = useContext(CartContext);
@@ -28,7 +29,7 @@ function Products() {
 
   const handleCart = product => {
     const newCartItems = { ...cart };
-    newCartItems.items = [...cart.items, product];
+    newCartItems.items = [...cart.items, { ...product, qty: 1 }];
     setCart(newCartItems);
   };
 
@@ -71,52 +72,63 @@ function Products() {
   return (
     <div>
       Products
-      <Table variant="dark" striped hover>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th onClick={() => setQuery({ ...query, sortBy: "name" })}>Name</th>
-            <th onClick={() => setQuery({ ...query, sortBy: "price" })}>
-              Price
-            </th>
-            <th>In Stock</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products?.map(pro => (
-            <tr>
-              <td>{pro._id}</td>
-              <td>{pro.name}</td>
-              <td>{pro.price}</td>
-              <td>{pro.inStock ? "In Stock" : "Out of Stock"}</td>
-              <td>
-                <Button
-                  onClick={() => navigator(`new/${pro._id}`)}
-                  variant="secondary">
-                  Edit
-                </Button>
-                <Button variant="danger" onClick={() => handleDelete(pro._id)}>
-                  Delete
-                </Button>
-                <Button variant="secondary" onClick={() => handleCart(pro)}>
-                  Add To Cart
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-      <Pagination>
-        {linksArray?.map((link, index) => {
-          return (
-            <Pagination.Item
-              onClick={() => setQuery({ ...query, page: +link })}>
-              {link + 1}
-            </Pagination.Item>
-          );
-        })}
-      </Pagination>
+      <Row>
+        <Col xs={12} lg={8}>
+          <Table variant="dark" striped hover>
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th onClick={() => setQuery({ ...query, sortBy: "name" })}>
+                  Name
+                </th>
+                <th onClick={() => setQuery({ ...query, sortBy: "price" })}>
+                  Price
+                </th>
+                <th>In Stock</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products?.map(pro => (
+                <tr>
+                  <td>{pro._id}</td>
+                  <td>{pro.name}</td>
+                  <td>{pro.price}</td>
+                  <td>{pro.inStock ? "In Stock" : "Out of Stock"}</td>
+                  <td>
+                    <Button
+                      onClick={() => navigator(`new/${pro._id}`)}
+                      variant="secondary">
+                      Edit
+                    </Button>
+                    <Button
+                      variant="danger"
+                      onClick={() => handleDelete(pro._id)}>
+                      Delete
+                    </Button>
+                    <Button variant="secondary" onClick={() => handleCart(pro)}>
+                      Add To Cart
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          <Pagination>
+            {linksArray?.map((link, index) => {
+              return (
+                <Pagination.Item
+                  onClick={() => setQuery({ ...query, page: +link })}>
+                  {link + 1}
+                </Pagination.Item>
+              );
+            })}
+          </Pagination>
+        </Col>
+        <Col xs={12} lg={4}>
+          <Cart />
+        </Col>
+      </Row>
     </div>
   );
 }
