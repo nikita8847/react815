@@ -13,6 +13,51 @@ import Page404 from "./components/Page404";
 import Navbar from "./components/navbar/Navbar";
 import Products from "./components/products/Products";
 import ProductForm from "./components/products/ProductForm";
+import { Line, Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import Dashboard from "./screens/Dashboard";
+
+export const data = {
+  labels: ["January", "February", "March", "April", "May", "June", "July"],
+  datasets: [
+    {
+      label: "Dataset 1",
+      data: [3, 43, 45, 7, 86, 86, 86, 12],
+      borderColor: "rgb(255, 99, 132)",
+      backgroundColor: "rgba(255, 99, 132, 0.5)",
+    },
+    {
+      label: "Dataset 2",
+      data: [30, 4, 45, 7, 8, 86, 86, 10],
+      borderColor: "rgb(53, 162, 235)",
+      backgroundColor: "rgba(53, 162, 235, 0.5)",
+    },
+    {
+      label: "Dataset 3",
+      data: [30, 40, 450, 7, 8, 86, 86, 10],
+      borderColor: "rgb(53, 162, 235)",
+      backgroundColor: "rgba(53, 162, 235, 0.5)",
+    },
+  ],
+};
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+);
 
 export const CartContext = React.createContext();
 
@@ -27,6 +72,7 @@ function App() {
         <Routes>
           <Route path="/rating" element={<Rating />} />
           <Route path="/counter" element={<Counter />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/switch" element={<Switch />} />
           <Route path="/products">
             <Route index element={<Products />} />
