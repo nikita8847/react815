@@ -1,0 +1,17 @@
+.m-dashboard{
+    display: grid;
+    height: 100vh;
+    grid-template: 100px 1fr  / 150px 1fr;
+    grid-template-areas: 
+    "sidebar navbar"
+    "sidebar main";
+}
+.m-dashboard .m-navbar{
+    grid-area: navbar;
+}
+.m-dashboard .m-sidebar{
+    grid-area: sidebar;
+}
+.m-dashboard .m-main-area{
+    grid-area: main;
+}

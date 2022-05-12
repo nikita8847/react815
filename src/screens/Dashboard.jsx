@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import Navbar from "../components/navbar/Navbar";
+import Sidebar from "../components/sidebar/Sidebar";
 import { http } from "../config/axiosConfig";
+import "./dashboard.css";
 
 function Dashboard() {
   const [dashboardData, setDashboardData] = useState(null);
@@ -10,23 +13,12 @@ function Dashboard() {
   console.log(dashboardData);
 
   return (
-    <div>
-      <Container>
-        <Row>
-          <Col lg={3} xs={12}>
-            Transaction - {dashboardData?.transactions}
-          </Col>
-          <Col lg={3} xs={12}>
-            Products- {dashboardData?.products}
-          </Col>
-          <Col lg={3} xs={12}>
-            Users - {dashboardData?.users}
-          </Col>
-          <Col lg={3} xs={12}>
-            Categories - {dashboardData?.categories}
-          </Col>
-        </Row>
-      </Container>
+    <div className="m-dashboard">
+      <div className="m-navbar"></div>
+      <div className="m-sidebar">
+        <Sidebar />
+      </div>
+      <div className="m-main-area"></div>
     </div>
   );
 }

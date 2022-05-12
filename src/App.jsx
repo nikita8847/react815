@@ -25,6 +25,7 @@ import {
   Legend,
 } from "chart.js";
 import Dashboard from "./screens/Dashboard";
+import Sidebar from "./components/sidebar/Sidebar";
 
 export const data = {
   labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -68,25 +69,14 @@ function App() {
   return (
     <div>
       <CartContext.Provider value={{ cart, setCart }}>
-        <Navbar />
         <Routes>
-          <Route path="/rating" element={<Rating />} />
-          <Route path="/counter" element={<Counter />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/switch" element={<Switch />} />
-          <Route path="/products">
-            <Route index element={<Products />} />
-            <Route path="new" element={<ProductForm />} />
-            <Route path="new/:id" element={<ProductForm />} />
+          <Route path="/dashboard">
+            <Route index element={<Dashboard />} />
+            <Route path="users" element={<Students />} />
+            <Route path="categories" element={<Switch />} />
+            <Route path="products" element={<Products />} />
+            <Route path="transactions" element={<Counter />} />
           </Route>
-
-          <Route path="/students">
-            <Route index element={<Students />} />
-            <Route path="tasks" element={<Tasks />} />
-            <Route path="single/:id/:loc" element={<Student />} />
-          </Route>
-
-          <Route path="/*" element={<Page404 />} />
         </Routes>
       </CartContext.Provider>
     </div>
