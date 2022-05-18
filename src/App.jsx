@@ -70,12 +70,9 @@ function App() {
     <div>
       <CartContext.Provider value={{ cart, setCart }}>
         <Routes>
-          <Route path="/dashboard">
-            <Route index element={<Dashboard />} />
-            <Route path="users" element={<Students />} />
-            <Route path="categories" element={<Switch />} />
+          <Route path="/" element={<Dashboard />}>
             <Route path="products" element={<Products />} />
-            <Route path="transactions" element={<Counter />} />
+            <Route path="counter" element={<Counter />} />
           </Route>
         </Routes>
       </CartContext.Provider>

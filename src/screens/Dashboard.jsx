@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { Outlet, Route } from "react-router-dom";
 import Navbar from "../components/navbar/Navbar";
 import Sidebar from "../components/sidebar/Sidebar";
+import Students from "../components/students/Students";
 import { http } from "../config/axiosConfig";
 import "./dashboard.css";
 
@@ -18,7 +20,9 @@ function Dashboard() {
       <div className="m-sidebar">
         <Sidebar />
       </div>
-      <div className="m-main-area"></div>
+      <div className="m-main-area">
+        <Outlet />
+      </div>
     </div>
   );
 }
