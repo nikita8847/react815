@@ -26,6 +26,7 @@ import {
 } from "chart.js";
 import Dashboard from "./screens/Dashboard";
 import Sidebar from "./components/sidebar/Sidebar";
+import LoginScreen from "./screens/LoginScreen";
 
 export const data = {
   labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -70,6 +71,7 @@ function App() {
     <div>
       <CartContext.Provider value={{ cart, setCart }}>
         <Routes>
+          <Route path="/login" element={<LoginScreen />} />
           <Route path="/" element={<Dashboard />}>
             <Route path="products" element={<Products />} />
             <Route path="counter" element={<Counter />} />
