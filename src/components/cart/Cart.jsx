@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { CartContext } from "../../App";
 
@@ -8,7 +8,7 @@ function Cart() {
 
   const updateCart = (id, action) => {
     const newCartItems = { ...cart };
-    const index = newCartItems.items.findIndex(el => el._id == id);
+    const index = newCartItems.items.findIndex((el) => el._id == id);
     if (action == "inc") newCartItems.items[index].qty++;
     else if (action == "dec") newCartItems.items[index].qty--;
 
@@ -26,7 +26,7 @@ function Cart() {
           </tr>
         </thead>
         <tbody>
-          {cart.items.map(item => (
+          {cart.items.map((item) => (
             <tr>
               <td>{item.name}</td>
               <td>{item.price}</td>
@@ -46,6 +46,11 @@ function Cart() {
               <td>{(item.price * item.qty).toFixed(2)}</td>
             </tr>
           ))}
+          <tr>
+            <td>
+              <Button>Buy now</Button>
+            </td>
+          </tr>
         </tbody>
       </Table>
     </div>

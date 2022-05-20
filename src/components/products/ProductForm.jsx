@@ -10,7 +10,7 @@ function ProductForm() {
   const [MODE, setMODE] = useState("CREATE");
   console.log("ID", ID);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     let data = new FormData(e.target);
     if (MODE == "UPDATE") {
@@ -19,18 +19,18 @@ function ProductForm() {
       httpFile.post("products", data);
     }
   };
-  const handleFormChange = e => {
+  const handleFormChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   useEffect(() => {
-    http(`products/${ID}`).then(res => {
+    http(`products/${ID}`).then((res) => {
       if (res.status == 200) {
         setFormData(res.data);
         setMODE("UPDATE");
       }
     });
-    http("categories").then(res => setCategories(res.data.result));
+    http("categories").then((res) => setCategories(res.data.result));
   }, []);
 
   console.log("formData", formData);
@@ -69,11 +69,12 @@ function ProductForm() {
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Categories</Form.Label>
           <Form.Select name="category">
-            {categories?.map(category => (
+            {categories?.map((category) => (
               <option
-                selected={category._id == formData?.category._id}
-                value={category._id}>
-                {category.name}
+                selected={category?._id == formData?.category?._id}
+                value={category?._id}
+              >
+                {category?.name}
               </option>
             ))}
           </Form.Select>
